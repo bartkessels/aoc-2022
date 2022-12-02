@@ -1,11 +1,17 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 set(SOURCEFILES
+    ../src/results/Result.cpp
 
+    ../src/results/day1/First.cpp
+    ../src/results/day1/Second.cpp
 )
 
 set(TESTFILES
     main.cpp
+
+    day1/first_test.cpp
+    day1/second_test.cpp
 )
 
 add_executable(aoc_tests ${SOURCEFILES} ${TESTFILES})

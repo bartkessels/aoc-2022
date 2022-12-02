@@ -1,13 +1,14 @@
-#include <cpr/cpr.h>
+#pragma once
+
 #include <string>
 
 namespace AOC2022::service
 {
-    class HttpService
+    struct HttpService
     {
         public:
             ~HttpService() = default;
 
-            std::string getRawRequest(std::string uri);
+            virtual std::string getRawRequest(std::string uri) = 0;
     };
 }

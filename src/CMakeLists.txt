@@ -1,12 +1,16 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 
 set(SOURCEFILES
     main.cpp
+    service/CprHttpService.cpp
+
+    # Day 1
+    results/day1/First.cpp
+    results/day1/Second.cpp
+
+    results/Result.cpp
 )
 
 add_executable(
