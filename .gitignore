@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# Generator files
+Makefile*
+*.cmake
+*Cache*
+
+# Generated dirs
+_deps/
+bin/
+CMakeFiles/

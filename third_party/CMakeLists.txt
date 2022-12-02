@@ -22,6 +22,10 @@ FetchContent_MakeAvailable(extern_catch2)
 
 # ------------------------------------------------------------------------------
 # CPR
+set(CPR_BUILD_TESTS OFF)
+set(CPR_ENABLE_LINTING OFF)
+set(CPR_ENABLE_CPPCHECK OFF)
+
 FetchContent_Declare(
         extern_cpr
 

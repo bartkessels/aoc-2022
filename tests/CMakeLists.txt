@@ -1,9 +1,5 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
-# Copy test_file.txt to current working directory
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res/test_file.txt
-        DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-
 set(SOURCEFILES
 
 )
