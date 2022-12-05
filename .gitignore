@@ -36,3 +36,5 @@ Makefile*
 _deps/
 bin/
 CMakeFiles/
+.idea/
+build/

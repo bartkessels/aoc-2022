@@ -11,6 +11,13 @@ set(SOURCEFILES
     results/day1/First.cpp
     results/day1/Second.cpp
 
+    # Day 2
+    results/day2/StrategyMapper.cpp
+    results/day2/RoundOutcomeMapper.cpp
+    results/day2/DataCleaner.cpp
+    results/day2/First.cpp
+    results/day2/Game.cpp
+
     results/Result.cpp
 )
 

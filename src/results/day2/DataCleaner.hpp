@@ -1,12 +1,12 @@
 #pragma once
 
 #include <memory>
-#include <string>
 #include <list>
+#include <utility>
 
 #include "service/HttpService.hpp"
 
-namespace AOC2022::results::day1
+namespace AOC2022::results::day2
 {
     class DataCleaner
     {
@@ -14,9 +14,11 @@ namespace AOC2022::results::day1
             explicit DataCleaner(std::shared_ptr<service::HttpService> httpService);
             ~DataCleaner() = default;
 
-            std::list<std::string> getBlocks();
+            std::list<std::pair<char, char>> getData();
 
         private:
             std::shared_ptr<service::HttpService> httpService;
+            std::list<std::pair<char, char>> convertData(std::string data);
+            const std::string uri = "https://adventofcode.com/2022/day/2/input";
     };
 }

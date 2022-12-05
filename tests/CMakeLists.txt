@@ -4,15 +4,30 @@ set(SOURCEFILES
     ../src/results/Result.cpp
     ../src/helpers/ListHelper.cpp
 
+    # Day 1
     ../src/results/day1/First.cpp
     ../src/results/day1/Second.cpp
+
+    # Day 2
+    ../src/results/day2/StrategyMapper.cpp
+    ../src/results/day2/RoundOutcomeMapper.cpp
+    ../src/results/day2/DataCleaner.cpp
+    ../src/results/day2/First.cpp
+    ../src/results/day2/Game.cpp
 )
 
 set(TESTFILES
     main.cpp
 
+    # Day 1
     day1/first_test.cpp
     day1/second_test.cpp
+
+    # Day 2
+    day2/RoundOutcomeMapper_test.cpp
+    day2/StrategyMapper_test.cpp
+    day2/First_test.cpp
+    day2/Game_test.cpp
 )
 
 add_executable(aoc_tests ${SOURCEFILES} ${TESTFILES})

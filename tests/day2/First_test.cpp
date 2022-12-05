@@ -2,9 +2,9 @@
 #include <trompeloeil.hpp>
 #include <memory>
 
-#include "results/day1/Second.hpp"
+#include "results/day2/First.hpp"
 
-using namespace AOC2022::results::day1;
+using namespace AOC2022::results::day2;
 
 class HttpServiceMock: public AOC2022::service::HttpService
 {
@@ -12,14 +12,14 @@ class HttpServiceMock: public AOC2022::service::HttpService
         MAKE_MOCK1(getRawRequest, std::string(std::string), override);
 };
 
-TEST_CASE("Second result day 1")
+TEST_CASE("First result day 2")
 {
     const auto& httpService = std::make_shared<HttpServiceMock>();
-    const auto& input = "1000\n2000\n3000\n\n4000\n\n5000\n6000\n\n7000\n8000\n9000\n\n10000";
+    const auto& input = "A Y\nB X\nC Z\n";
 
     ALLOW_CALL(*httpService, getRawRequest(trompeloeil::_)).RETURN(input);
 
-    const auto& sut = std::make_unique<Second>(httpService);
+    const auto& sut = std::make_unique<First>(httpService);
 
     SECTION("Validate test case")
     {
@@ -29,6 +29,6 @@ TEST_CASE("Second result day 1")
         int result = sut->getResult();
 
         // Assert
-        REQUIRE(result == 45000);
+        REQUIRE(result == 15);
     }
 }
