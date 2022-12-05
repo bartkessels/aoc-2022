@@ -3,6 +3,7 @@
 #include <string>
 #include <list>
 
+#include "helpers/ListHelper.hpp"
 #include "results/Result.hpp"
 
 namespace AOC2022::results::day1
@@ -19,7 +20,6 @@ namespace AOC2022::results::day1
 
         private:
             std::list<std::string> getBlocks();
-            std::list<int> blockToList(std::string block);
-            int countAllNumbersFromList(std::list<int> list);
+            std::shared_ptr<helpers::ListHelper> listHelper;
     };
 }

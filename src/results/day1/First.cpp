@@ -5,7 +5,7 @@ using namespace AOC2022::results::day1;
 First::First(std::shared_ptr<service::HttpService> httpService):
     Result(httpService, First::uri)
 {
-
+    listHelper = std::make_shared<AOC2022::helpers::ListHelper>();
 }
 
 int First::getResult()
@@ -15,8 +15,8 @@ int First::getResult()
     std::list<std::string> blocks = getBlocks();
     
     for (auto blockIterator = blocks.begin(); blockIterator != blocks.end(); ++blockIterator) {
-        const auto& blockList = blockToList(*blockIterator);
-        int total = countAllNumbersFromList(blockList);
+        const auto& blockList = listHelper->stringLinesToList(*blockIterator);
+        int total = listHelper->countAllNumbersFromList(blockList);
         
         highestNumber = std::max(highestNumber, total);
     }
@@ -43,38 +43,4 @@ std::list<std::string> First::getBlocks()
     }
 
     return blocks;
-}
-
-std::list<int> First::blockToList(std::string block)
-{
-    const std::string delimiter = "\n";
-    std::string input = block;
-    std::list<int> numbers;
-
-    size_t pos = 0;
-    std::string token;
-
-    while ((pos = input.find(delimiter)) != std::string::npos) {
-        token = input.substr(0, pos);
-        numbers.push_back(std::stoi(token));
-
-        input.erase(0, pos + delimiter.length());
-    }
-
-    if (!input.empty()) {
-        numbers.push_back(std::stoi(input));
-    }
-    
-    return numbers;
-}
-
-int First::countAllNumbersFromList(std::list<int> list)
-{
-    int total = 0;
-
-    for (auto iterator = list.begin(); iterator != list.end(); ++iterator) {
-        total += *iterator;
-    }
-
-    return total;
 }

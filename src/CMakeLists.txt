@@ -4,6 +4,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SOURCEFILES
     main.cpp
+    helpers/ListHelper.cpp
     service/CprHttpService.cpp
 
     # Day 1

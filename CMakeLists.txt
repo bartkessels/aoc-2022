@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
-project(AOC-2022
+project(aoc2022
     VERSION 0.0.1
     DESCRIPTION "Advent of Code 2022"
     HOMEPAGE_URL "https://github.com/bartkessels/aoc-2022"

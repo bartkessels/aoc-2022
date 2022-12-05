@@ -5,7 +5,7 @@ using namespace AOC2022::results::day1;
 Second::Second(std::shared_ptr<service::HttpService> httpService):
     Result(httpService, Second::uri)
 {
-
+    listHelper = std::make_shared<AOC2022::helpers::ListHelper>();
 }
 
 int Second::getResult()
@@ -15,20 +15,19 @@ int Second::getResult()
     std::list<std::string> blocks = getBlocks();
     
     for (auto blockIterator = blocks.begin(); blockIterator != blocks.end(); ++blockIterator) {
-        const auto& blockList = blockToList(*blockIterator);
-        int total = countAllNumbersFromList(blockList);
+        const auto& blockList = listHelper->stringLinesToList(*blockIterator);
+        int total = listHelper->countAllNumbersFromList(blockList);
         
         totals.push_back(total);
     }
     
-    // Sort list
-    std::list<int> sortedList = sortList(totals);
+    totals.sort(std::greater<int>());
 
-    while (sortedList.size() > 3) {
-        sortedList.pop_back();
+    while (totals.size() > 3) {
+        totals.pop_back();
     }
 
-    return countAllNumbersFromList(sortedList);
+    return listHelper->countAllNumbersFromList(totals);
 }
 
 std::list<std::string> Second::getBlocks()
@@ -50,50 +49,4 @@ std::list<std::string> Second::getBlocks()
     }
 
     return blocks;
-}
-
-std::list<int> Second::blockToList(std::string block)
-{
-    const std::string delimiter = "\n";
-    std::string input = block;
-    std::list<int> numbers;
-
-    size_t pos = 0;
-    std::string token;
-
-    while ((pos = input.find(delimiter)) != std::string::npos) {
-        token = input.substr(0, pos);
-        numbers.push_back(std::stoi(token));
-
-        input.erase(0, pos + delimiter.length());
-    }
-
-    if (!input.empty()) {
-        numbers.push_back(std::stoi(input));
-    }
-    
-    return numbers;
-}
-
-int Second::countAllNumbersFromList(std::list<int> list)
-{
-    int total = 0;
-
-    for (auto iterator = list.begin(); iterator != list.end(); ++iterator) {
-        total += *iterator;
-    }
-
-    return total;
-}
-
-std::list<int> Second::sortList(std::list<int> list)
-{
-    int previousNum = *list.begin();
-    std::list<int> sortedList;
-
-    for (auto iterator = list.begin(); iterator != list.end(); ++iterator) {
-        sortedList.push_front(std::max(previousNum, *iterator));
-    }
-
-    return sortedList;    
 }
