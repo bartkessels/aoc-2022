@@ -1,0 +1,31 @@
+name: CMake
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Generate Makefiles
+      run: cmake .
+
+    - name: Build project
+      run: make aoc2022
+
+    - name: Build test project
+      run: make aoc_tests
+
+    - name: Execute tests
+      run: ./bin/aoc_tests
+
