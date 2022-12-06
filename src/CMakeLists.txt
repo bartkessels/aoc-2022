@@ -16,6 +16,7 @@ set(SOURCEFILES
     results/day2/RoundOutcomeMapper.cpp
     results/day2/DataCleaner.cpp
     results/day2/First.cpp
+    results/day2/Second.cpp
     results/day2/Game.cpp
 
     results/Result.cpp

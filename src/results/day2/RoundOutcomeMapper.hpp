@@ -10,5 +10,6 @@ namespace AOC2022::results::day2
             ~RoundOutcomeMapper() = default;
 
             int mapToPoints(RoundOutcome outcome);
+            RoundOutcome mapDecision(char decision);
     };
 }

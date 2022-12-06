@@ -12,5 +12,22 @@ int RoundOutcomeMapper::mapToPoints(RoundOutcome outcome)
             return 3;
         case RoundOutcome::Lost:
             return 0;
+        default:
+            return -1;
+    }
+}
+
+RoundOutcome RoundOutcomeMapper::mapDecision(char decision)
+{
+    switch(decision)
+    {
+        case 'X':
+            return RoundOutcome::Lost;
+        case 'Y':
+            return RoundOutcome::Draw;
+        case 'Z':
+            return RoundOutcome::Won;
+        default:
+            throw "Unknown decision!";
     }
 }

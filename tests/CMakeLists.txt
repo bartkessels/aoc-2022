@@ -13,6 +13,7 @@ set(SOURCEFILES
     ../src/results/day2/RoundOutcomeMapper.cpp
     ../src/results/day2/DataCleaner.cpp
     ../src/results/day2/First.cpp
+    ../src/results/day2/Second.cpp
     ../src/results/day2/Game.cpp
 )
 
@@ -27,6 +28,7 @@ set(TESTFILES
     day2/RoundOutcomeMapper_test.cpp
     day2/StrategyMapper_test.cpp
     day2/First_test.cpp
+    day2/Second_test.cpp
     day2/Game_test.cpp
 )
 
