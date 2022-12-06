@@ -2,6 +2,17 @@
 
 using namespace AOC2022::helpers;
 
+int ListHelper::countAllNumbersFromList(std::list<std::string> list)
+{
+    int total = 0;
+
+    for (auto iterator = list.begin(); iterator != list.end(); ++iterator) {
+        total += std::stoi(*iterator);
+    }
+
+    return total;
+}
+
 int ListHelper::countAllNumbersFromList(std::list<int> list)
 {
     int total = 0;

@@ -10,6 +10,7 @@ namespace AOC2022::helpers
         public:
             ~ListHelper() = default;
 
+            int countAllNumbersFromList(std::list<std::string> list);
             int countAllNumbersFromList(std::list<int> list);
             std::list<int> stringLinesToList(std::string block);
     };

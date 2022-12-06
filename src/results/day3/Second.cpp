@@ -1,5 +1,4 @@
 #include "results/day3/Second.hpp"
-#include <iostream>
 
 using namespace AOC2022::results::day3;
 
@@ -14,25 +13,12 @@ int Second::getResult()
     auto ruckSacks = dataCleaner->getDataAsRuckSacks();
     int totalPoints = 0;
 
-    std::cout << "RUCKSACKS: " << ruckSacks.size() << std::endl;
+    for (auto it = ruckSacks.begin(); it != ruckSacks.end(); std::advance(it, 3)) {
+        const auto& ruckSackOne = it;
+        const auto& ruckSackTwo = std::next(ruckSackOne);
+        const auto& ruckSackThree = std::next(ruckSackTwo);
 
-    while (ruckSacks.size() > 0) {
-        ruckSacks.swap()
-    }
-
-    for (int index = 0; index < ruckSacks.size(); index += 3) {
-        const auto& ruckSackOne = ruckSacks.begin();
-        const auto& ruckSackTwo = ruckSacks.begin()++;
-        const auto& ruckSackThree = ruckSacks.begin()++++;
-
-        totalPoints += getSameItemForRuckSacks(*ruckSackOne, *ruckSackTwo, *ruckSackThree);
-
-        std::cout << "POINTS: " << totalPoints << std::endl;
-
-        // Pop
-        ruckSacks.pop_front();
-        ruckSacks.pop_front();
-        ruckSacks.pop_front();
+        totalPoints += getPointsForRuckSacks(*ruckSackOne, *ruckSackTwo, *ruckSackThree);
     }
 
     return totalPoints;
@@ -51,8 +37,6 @@ char Second::getSameItemForRuckSacks(std::string ruckSackOne, std::string ruckSa
         size_t posRuckSackOne = ruckSackOne.find(item);
         size_t posRuckSackTwo = ruckSackTwo.find(item);
         size_t posRuckSackThree = ruckSackThree.find(item);
-
-        std::cout << "CHAR: " << item << std::endl;
 
         if (posRuckSackOne != std::string::npos && posRuckSackTwo != std::string::npos && posRuckSackThree != std::string::npos)
             return item;

@@ -5,6 +5,7 @@ set(SOURCEFILES
     ../src/helpers/ListHelper.cpp
 
     # Day 1
+    ../src/results/day1/Input.cpp
     ../src/results/day1/First.cpp
     ../src/results/day1/Second.cpp
 
@@ -27,6 +28,7 @@ set(TESTFILES
     main.cpp
 
     # Day 1
+    day1/Input_test.cpp
     day1/first_test.cpp
     day1/second_test.cpp
 

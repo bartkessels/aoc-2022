@@ -4,10 +4,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SOURCEFILES
     main.cpp
+    data/FileRepository.cpp
     helpers/ListHelper.cpp
     service/CprHttpService.cpp
 
     # Day 1
+    results/day1/Input.cpp
     results/day1/First.cpp
     results/day1/Second.cpp
 

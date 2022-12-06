@@ -3,23 +3,22 @@
 #include <string>
 #include <list>
 
+#include "data/Repository.hpp"
 #include "helpers/ListHelper.hpp"
-#include "results/Result.hpp"
+#include "results/day1/Input.hpp"
 
 namespace AOC2022::results::day1
 {
-    class Second: public results::Result
+    class Second
     {
         public:
-            explicit Second(std::shared_ptr<service::HttpService> httpService);
+            explicit Second(std::shared_ptr<data::Repository> repo);
             ~Second() = default;
 
-            int getResult() override;
-        
-            static inline const std::string uri = "https://adventofcode.com/2022/day/1/input";
+            int getResult();
 
         private:
-            std::list<std::string> getBlocks();
-            std::shared_ptr<helpers::ListHelper> listHelper;
+            std::unique_ptr<helpers::ListHelper> listHelper;
+            std::unique_ptr<Input> input;
     };
 }

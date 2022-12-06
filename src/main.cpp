@@ -10,6 +10,7 @@
 #include "results/day2/Second.hpp"
 
 #include "results/day3/First.hpp"
+#include "results/day3/Second.hpp"
 
 using namespace AOC2022;
 using namespace AOC2022::service;
@@ -38,6 +39,8 @@ int main(int argc, char** args)
     std::cout << "###### DAY 3 ######" << std::endl; 
     const auto& day3First = std::make_shared<day3::First>(httpService);
     std::cout << day3First->getResult() << std::endl;
+    const auto& day3Second = std::make_shared<day3::Second>(httpService);
+    std::cout << day3Second->getResult() << std::endl;
 
     return 0;
 }

@@ -87,7 +87,9 @@
         "complex": "cpp",
         "semaphore": "cpp",
         "stop_token": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "charconv": "cpp",
+        "format": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }
