@@ -23,6 +23,7 @@ set(SOURCEFILES
     results/day3/DataCleaner.cpp
     results/day3/PriorityMapper.cpp
     results/day3/First.cpp
+    results/day3/Second.cpp
 
     results/Result.cpp
 )

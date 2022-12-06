@@ -20,6 +20,7 @@ set(SOURCEFILES
     ../src/results/day3/DataCleaner.cpp
     ../src/results/day3/PriorityMapper.cpp
     ../src/results/day3/First.cpp
+    ../src/results/day3/Second.cpp
 )
 
 set(TESTFILES
@@ -39,6 +40,7 @@ set(TESTFILES
     # Day 3
     day3/PriorityMapper_test.cpp
     day3/First_test.cpp
+    day3/Second_test.cpp
 )
 
 add_executable(aoc_tests ${SOURCEFILES} ${TESTFILES})

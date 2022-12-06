@@ -15,10 +15,12 @@ namespace AOC2022::results::day3
             ~DataCleaner() = default;
 
             std::list<std::pair<std::string, std::string>> getData();
+            std::list<std::string> getDataAsRuckSacks();
 
         private:
             std::shared_ptr<service::HttpService> httpService;
             std::list<std::pair<std::string, std::string>> convertData(std::string data);
+            std::list<std::string> convertDataAsRuckSacks(std::string data);
             const std::string uri = "https://adventofcode.com/2022/day/3/input";
     };
 }
