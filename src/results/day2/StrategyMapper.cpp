@@ -30,5 +30,7 @@ int StrategyMapper::mapToPoints(Strategy strategy)
             return 2;
         case Strategy::Scissors:
             return 3;
+        default:
+            throw "Unsupported strategy!";
     };
 }
