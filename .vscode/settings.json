@@ -89,7 +89,8 @@
         "stop_token": "cpp",
         "queue": "cpp",
         "charconv": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "filesystem": "cpp"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

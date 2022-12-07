@@ -12,6 +12,9 @@
 #include "results/day3/First.hpp"
 #include "results/day3/Second.hpp"
 
+#include "results/day4/First.hpp"
+#include "results/day4/Second.hpp"
+
 using namespace AOC2022;
 using namespace AOC2022::results;
 
@@ -39,6 +42,13 @@ int main(int argc, char** args)
     std::cout << day3First->getResult() << std::endl;
     const auto& day3Second = std::make_shared<day3::Second>(repository);
     std::cout << day3Second->getResult() << std::endl;
+
+    // Day 4
+    std::cout << "###### DAY 4 ######" << std::endl; 
+    const auto& day4First = std::make_shared<day4::First>(repository);
+    std::cout << day4First->getResult() << std::endl;
+    const auto& day4Second = std::make_shared<day4::Second>(repository);
+    std::cout << day4Second->getResult() << std::endl;
 
     return 0;
 }

@@ -3,6 +3,7 @@
 #include <string>
 #include <format>
 #include <fstream>
+#include <sstream>
 #include <iostream>
 
 #include "data/Repository.hpp"

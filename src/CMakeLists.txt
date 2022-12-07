@@ -23,6 +23,12 @@ set(SOURCEFILES
     results/day3/PriorityMapper.cpp
     results/day3/First.cpp
     results/day3/Second.cpp
+
+    # Day 4
+    results/day4/Input.cpp
+    results/day4/Logic.cpp
+    results/day4/First.cpp
+    results/day4/Second.cpp
 )
 
 add_executable(
