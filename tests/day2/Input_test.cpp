@@ -2,34 +2,35 @@
 #include <trompeloeil.hpp>
 #include <memory>
 
-#include "results/day2/Second.hpp"
+#include "data/Repository.hpp"
+#include "results/day2/Input.hpp"
 
 using namespace AOC2022::data;
 using namespace AOC2022::results::day2;
 
-class RepositoryMock: public Repository
+class RepositoryMock: public AOC2022::data::Repository
 {
     public:
         MAKE_MOCK1(getData, std::string(int), override);
 };
 
-TEST_CASE("Second result day 2")
+TEST_CASE("Input day 2")
 {
     const auto& repository = std::make_shared<RepositoryMock>();
     const auto& input = "A Y\nB X\nC Z\n";
 
     ALLOW_CALL(*repository, getData(trompeloeil::_)).RETURN(input);
 
-    const auto& sut = std::make_unique<Second>(repository);
+    const auto& sut = std::make_unique<Input>(repository);
 
-    SECTION("Validate test case")
+    SECTION("Returns it in a list of 3 rounds")
     {
         // Arrange
 
         // Act
-        int result = sut->getResult();
+        const auto& result = sut->getRounds();
 
         // Assert
-        REQUIRE(result == 12);
+        REQUIRE(result.size() == 3);
     }
 }

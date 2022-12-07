@@ -2,24 +2,25 @@
 #include <trompeloeil.hpp>
 #include <memory>
 
+#include "data/Repository.hpp"
 #include "results/day3/First.hpp"
 
 using namespace AOC2022::results::day3;
 
-class HttpServiceMock: public AOC2022::service::HttpService
+class RepositoryMock: public AOC2022::data::Repository
 {
     public:
-        MAKE_MOCK1(getRawRequest, std::string(std::string), override);
+        MAKE_MOCK1(getData, std::string(int), override);
 };
 
 TEST_CASE("First result day 3")
 {
-    const auto& httpService = std::make_shared<HttpServiceMock>();
+    const auto& repository = std::make_shared<RepositoryMock>();
     const auto& input = "vJrwpWtwJgWrhcsFMMfFFhFp\njqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL\nPmmdzqPrVvPwwTWBwg\nwMqvLMZHhHMvwLHjbvcjnnSBnvTQFn\nttgJtRGJQctTZtZT\nCrZsJsPPZsGzwwsLwLmpwMDw\n";
 
-    ALLOW_CALL(*httpService, getRawRequest(trompeloeil::_)).RETURN(input);
+    ALLOW_CALL(*repository, getData(trompeloeil::_)).RETURN(input);
 
-    const auto& sut = std::make_unique<First>(httpService);
+    const auto& sut = std::make_unique<First>(repository);
 
     SECTION("Validate test case")
     {

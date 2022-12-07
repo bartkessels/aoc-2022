@@ -2,15 +2,15 @@
 
 using namespace AOC2022::results::day3;
 
-Second::Second(std::shared_ptr<service::HttpService> httpService)
+Second::Second(std::shared_ptr<AOC2022::data::Repository> repo)
 {
-    dataCleaner = std::make_shared<DataCleaner>(httpService);
+    input = std::make_shared<Input>(repo);
     priorityMapper = std::make_shared<PriorityMapper>();
 }
 
 int Second::getResult()
 {
-    auto ruckSacks = dataCleaner->getDataAsRuckSacks();
+    auto ruckSacks = input->getRuckSacks();
     int totalPoints = 0;
 
     for (auto it = ruckSacks.begin(); it != ruckSacks.end(); std::advance(it, 3)) {
@@ -24,29 +24,23 @@ int Second::getResult()
     return totalPoints;
 }
 
-char Second::getSameItemForRuckSacks(std::string ruckSackOne, std::string ruckSackTwo, std::string ruckSackThree)
+int Second::getPointsForRuckSacks(std::shared_ptr<RuckSack> ruckSackOne, std::shared_ptr<RuckSack> ruckSackTwo, std::shared_ptr<RuckSack> ruckSackThree)
 {
-    std::string biggestRuckSack = ruckSackOne;
+    std::string biggestRuckSack = ruckSackOne->getContents();
 
-    if (ruckSackTwo.size() > biggestRuckSack.size())
-        biggestRuckSack = ruckSackTwo;
-    if (ruckSackThree.size() > biggestRuckSack.size())
-        biggestRuckSack = ruckSackThree;
+    if (ruckSackTwo->getContents().size() > biggestRuckSack.size())
+        biggestRuckSack = ruckSackTwo->getContents();
+    if (ruckSackThree->getContents().size() > biggestRuckSack.size())
+        biggestRuckSack = ruckSackThree->getContents();
 
     for (char item : biggestRuckSack) {
-        size_t posRuckSackOne = ruckSackOne.find(item);
-        size_t posRuckSackTwo = ruckSackTwo.find(item);
-        size_t posRuckSackThree = ruckSackThree.find(item);
+        size_t posRuckSackOne = ruckSackOne->getContents().find(item);
+        size_t posRuckSackTwo = ruckSackTwo->getContents().find(item);
+        size_t posRuckSackThree = ruckSackThree->getContents().find(item);
 
         if (posRuckSackOne != std::string::npos && posRuckSackTwo != std::string::npos && posRuckSackThree != std::string::npos)
-            return item;
+            return priorityMapper->map(item);
     }
 
     throw "No matching characters!";
-}
-
-int Second::getPointsForRuckSacks(std::string ruckSackOne, std::string ruckSackTwo, std::string ruckSackThree)
-{
-    char sameItem = getSameItemForRuckSacks(ruckSackOne, ruckSackTwo, ruckSackThree);
-    return priorityMapper->map(sameItem);
 }

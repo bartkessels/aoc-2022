@@ -19,16 +19,3 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/catchorg/Catch2.git
     GIT_TAG        v2.13.9)
 FetchContent_MakeAvailable(extern_catch2)
-
-# ------------------------------------------------------------------------------
-# CPR
-set(CPR_BUILD_TESTS OFF)
-set(CPR_ENABLE_LINTING OFF)
-set(CPR_ENABLE_CPPCHECK OFF)
-
-FetchContent_Declare(
-        extern_cpr
-
-        GIT_REPOSITORY https://github.com/libcpr/cpr.git
-        GIT_TAG        1.9.3)
-FetchContent_MakeAvailable(extern_cpr)

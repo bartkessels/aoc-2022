@@ -6,7 +6,6 @@ set(SOURCEFILES
     main.cpp
     data/FileRepository.cpp
     helpers/ListHelper.cpp
-    service/CprHttpService.cpp
 
     # Day 1
     results/day1/Input.cpp
@@ -14,20 +13,16 @@ set(SOURCEFILES
     results/day1/Second.cpp
 
     # Day 2
-    results/day2/StrategyMapper.cpp
-    results/day2/RoundOutcomeMapper.cpp
-    results/day2/DataCleaner.cpp
+    results/day2/Input.cpp
+    results/day2/Game.cpp
     results/day2/First.cpp
     results/day2/Second.cpp
-    results/day2/Game.cpp
 
     # Day 3
-    results/day3/DataCleaner.cpp
+    results/day3/Input.cpp
     results/day3/PriorityMapper.cpp
     results/day3/First.cpp
     results/day3/Second.cpp
-
-    results/Result.cpp
 )
 
 add_executable(
@@ -40,6 +35,3 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
         RUNTIME
         DESTINATION bin
 )
-
-# Link libraries
-target_link_libraries(${CMAKE_PROJECT_NAME} cpr::cpr)

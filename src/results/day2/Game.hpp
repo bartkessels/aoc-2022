@@ -2,7 +2,8 @@
 
 #include <memory>
 
-#include "results/day2/Constants.hpp"
+#include "results/day2/models/Strategy.hpp"
+#include "results/day2/models/Outcome.hpp"
 
 namespace AOC2022::results::day2
 {
@@ -11,6 +12,11 @@ namespace AOC2022::results::day2
         public:
             ~Game() = default;
 
-            RoundOutcome playRound(Strategy oponentStrategy, Strategy ownStrategy);
+            Outcome playRound(Strategy oponentStrategy, Strategy ownStrategy);
+            int getPoints(Strategy strategy, Outcome outcome);
+
+        private:
+            int getPointsForStrategy(Strategy strategy);
+            int getPointsForOutcome(Outcome outcome);
     };
 }

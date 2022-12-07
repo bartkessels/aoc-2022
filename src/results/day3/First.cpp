@@ -2,15 +2,15 @@
 
 using namespace AOC2022::results::day3;
 
-First::First(std::shared_ptr<service::HttpService> httpService)
+First::First(std::shared_ptr<data::Repository> repo)
 {
-    dataCleaner = std::make_shared<DataCleaner>(httpService);
+    input = std::make_shared<Input>(repo);
     priorityMapper = std::make_shared<PriorityMapper>();
 }
 
 int First::getResult()
 {
-    const auto& ruckSacks = dataCleaner->getData();
+    const auto& ruckSacks = input->getRuckSacks();
     int totalPoints = 0;
 
     for (const auto& ruckSack : ruckSacks) {
@@ -20,20 +20,14 @@ int First::getResult()
     return totalPoints;
 }
 
-char First::getSameItemForCompartiments(std::string firstCompartiment, std::string secondCompartiment)
+int First::getPointsForRuckSack(std::shared_ptr<RuckSack> ruckSack)
 {
-    for (char itemA : firstCompartiment) {
-        size_t foundPos = secondCompartiment.find(itemA);
+    for (char itemA : ruckSack->compartimentOne) {
+        size_t foundPos = ruckSack->compartimentTwo.find(itemA);
 
         if (foundPos != std::string::npos)
-            return itemA;
+            return priorityMapper->map(itemA);
     }
 
     throw "No matching characters!";
-}
-
-int First::getPointsForRuckSack(std::pair<std::string, std::string> ruckSack)
-{
-    char sameItem = getSameItemForCompartiments(ruckSack.first, ruckSack.second);
-    return priorityMapper->map(sameItem);
 }

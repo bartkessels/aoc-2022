@@ -12,7 +12,7 @@ std::list<std::shared_ptr<Block>> Input::getBlocks()
 {
     std::list<std::shared_ptr<Block>> blocks;
 
-    const auto& input = repo->getData(1);
+    std::string input = repo->getData(1);
     const auto& rawBlocks = splitBy(input, "\n\n");
 
     for (const auto& rawBlock : rawBlocks) {

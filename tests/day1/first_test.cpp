@@ -9,7 +9,7 @@
 using namespace AOC2022::data;
 using namespace AOC2022::results::day1;
 
-class RepositoryMock: public AOC2022::data::Repository
+class RepositoryMock: public Repository
 {
     public:
         MAKE_MOCK1(getData, std::string(int), override);

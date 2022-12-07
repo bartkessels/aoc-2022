@@ -2,60 +2,52 @@
 
 using namespace AOC2022::results::day2;
 
-Second::Second(std::shared_ptr<service::HttpService> httpService)
+Second::Second(std::shared_ptr<AOC2022::data::Repository> repo)
 {
-    outcomeMapper = std::make_shared<RoundOutcomeMapper>();
-    strategyMapper = std::make_shared<StrategyMapper>();
+    input = std::make_shared<Input>(repo);
     game = std::make_shared<Game>();
-    dataCleaner = std::make_shared<DataCleaner>(httpService);
 }
 
 int Second::getResult()
 {
-    const auto& strategyGuide = dataCleaner->getData();
+
+    const auto& strategyGuide = input->getRounds();
     int totalScore = 0;
 
     for (const auto& round : strategyGuide) {
-        const auto& oponentStrategy = strategyMapper->mapStrategy(round.first);
-        const auto& expectedOutcome = outcomeMapper->mapDecision(round.second);
-        const auto& ownStrategy = getOwnStrategy(oponentStrategy, expectedOutcome);
-
-        totalScore += getRoundResult(oponentStrategy, ownStrategy);
+        round->ownStrategy = getOwnStrategy(round);
+        totalScore += playRound(round);
     }
 
     return totalScore;
 }
 
-int Second::getRoundResult(Strategy oponentStrategy, Strategy ownStrategy)
+int Second::playRound(std::shared_ptr<Round> round)
 {
-    const auto& roundOutcome = game->playRound(oponentStrategy, ownStrategy);
-
-    int outcomeScore = outcomeMapper->mapToPoints(roundOutcome);
-    int strategyScore = strategyMapper->mapToPoints(ownStrategy);
-
-    return outcomeScore + strategyScore;
+    const auto& outcome = game->playRound(round->oponentStrategy, round->ownStrategy);
+    return game->getPoints(round->ownStrategy, outcome);
 }
 
-Strategy Second::getOwnStrategy(Strategy oponentStrategy, RoundOutcome expectedOutcome)
+Strategy Second::getOwnStrategy(std::shared_ptr<Round> round)
 {
-    if (expectedOutcome == RoundOutcome::Draw)
-        return oponentStrategy;
+    if (round->expectedOutcome == Outcome::Draw)
+        return round->oponentStrategy;
 
-    if (expectedOutcome == RoundOutcome::Won)
+    if (round->expectedOutcome == Outcome::Won)
     {
-        if (oponentStrategy == Strategy::Rock)
+        if (round->oponentStrategy == Strategy::Rock)
             return Strategy::Paper;
-        if (oponentStrategy == Strategy::Paper)
+        if (round->oponentStrategy == Strategy::Paper)
             return Strategy::Scissors;
-        if (oponentStrategy == Strategy::Scissors)
+        if (round->oponentStrategy == Strategy::Scissors)
             return Strategy::Rock;
     }
 
-    if (oponentStrategy == Strategy::Rock)
+    if (round->oponentStrategy == Strategy::Rock)
         return Strategy::Scissors;
-    if (oponentStrategy == Strategy::Paper)
+    if (round->oponentStrategy == Strategy::Paper)
         return Strategy::Rock;
-    if (oponentStrategy == Strategy::Scissors)
+    if (round->oponentStrategy == Strategy::Scissors)
         return Strategy::Paper;
 
     throw "No valid strategy!";
