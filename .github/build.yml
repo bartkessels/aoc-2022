@@ -1,0 +1,26 @@
+name: CMake
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Generate Makefiles
+      run: cmake .
+
+    - name: Build project
+      run: make aoc2022
+
+    - name: Build test project
+      run: make aoc_tests
+
+    - name: Execute tests
+      run: ./bin/aoc_tests
+
