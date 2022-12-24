@@ -25,7 +25,7 @@ TEST_CASE("Input day 4")
 
     const auto& sut = std::make_unique<Input>(repository);
 
-    SECTION("Returns it in a list of 3 asignments")
+    SECTION("Returns it in a list of 6 asignments")
     {
         // Arrange
 
