@@ -30,6 +30,7 @@ set(SOURCEFILES
     ../src/results/day5/Input.cpp
     ../src/results/day5/Logic.cpp
     ../src/results/day5/First.cpp
+    ../src/results/day5/Second.cpp
 )
 
 set(TESTFILES
@@ -60,6 +61,7 @@ set(TESTFILES
     # Day 5
     day5/Input_test.cpp
     day5/First_test.cpp
+    day5/Second_test.cpp
 )
 
 add_executable(aoc_tests ${SOURCEFILES} ${TESTFILES})

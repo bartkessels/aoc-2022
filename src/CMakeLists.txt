@@ -34,6 +34,7 @@ set(SOURCEFILES
     results/day5/Input.cpp
     results/day5/Logic.cpp
     results/day5/First.cpp
+    results/day5/Second.cpp
 )
 
 add_executable(

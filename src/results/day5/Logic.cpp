@@ -62,9 +62,22 @@ void Logic::executeInstructions(std::list<std::shared_ptr<Instruction>> instruct
     }
 }
 
+void Logic::executeInstructionsInOrder(std::list<std::shared_ptr<Instruction>> instructions)
+{
+    for (const auto& instruction : instructions) {
+        executeInstructionInOrder(instruction);
+    }
+}
+
 void Logic::executeInstruction(std::shared_ptr<Instruction> instruction)
 {
     const auto& itemsToMove = getItemsFromStack(instruction->beginStackNumber, instruction->noToMove);
+    insertInStack(instruction->endStackNumber, itemsToMove);
+}
+
+void Logic::executeInstructionInOrder(std::shared_ptr<Instruction> instruction)
+{
+    const auto& itemsToMove = getItemsFromStackInSameOrder(instruction->beginStackNumber, instruction->noToMove);
     insertInStack(instruction->endStackNumber, itemsToMove);
 }
 
@@ -104,6 +117,23 @@ std::string Logic::getItemsFromStack(int stackNum, int noItems)
 
     for (int i = 0; i < noItems; i++) {
         items.push_back(stack->top());
+        stack->pop();
+    }
+
+    return items;
+}
+
+std::string Logic::getItemsFromStackInSameOrder(int stackNum, int noItems)
+{
+    const auto& stack = getStack(stackNum);
+    std::string items;
+
+    if (noItems > stack->size()) {
+        throw "Cannot retrieve more items than the stack length";
+    }
+
+    for (int i = 0; i < noItems; i++) {
+        items.insert(items.begin(), stack->top());
         stack->pop();
     }
 
